@@ -1,0 +1,10 @@
+PARAMS	5		
+EPOCHS	4
+STIMULUS_CLASS ShortFlashOntoGray_test3
+FlashDuration	0.1	0.1	0.2	0.2			
+FlashContrast	0	1	0	1
+GrayDuration	1
+GrayContrast	0.5
+RepeatRNGSeed	0
+
+

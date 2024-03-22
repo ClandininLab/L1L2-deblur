@@ -1,0 +1,13 @@
+PARAMS	10		
+EPOCHS	4
+STIMULUS_CLASS StaticAndMovingSquareGrating
+DarkContrast	0	0	0	0
+LightContrast	1	1	1	1
+GrayContrast	0.5	0.5	0.5	0.5
+GratingPeriod	20	20	20	20
+GratingAngle	0	90	0	90
+GratingVelocity	20	20	-20	-20
+PhaseOffset	0	0	0	0
+GrayDuration	1.5	1.5	1.5	1.5
+StaticDuration	1.5	1.5	1.5	1.5
+MovingDuration	2	2	2	2

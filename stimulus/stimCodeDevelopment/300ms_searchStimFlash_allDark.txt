@@ -1,0 +1,7 @@
+PARAMS	4		
+EPOCHS	2
+STIMULUS_CLASS SearchStimulusFlash
+Duration	0.3	0.3	
+BackgroundColor	0	0
+CenterColor	0	0.0001
+DegFromEdge	8

@@ -1,0 +1,8 @@
+PARAMS	5		
+EPOCHS	2
+STIMULUS_CLASS FullFieldFlashOntoGray
+FlashDuration	2	2			
+FlashContrast	0	0.5	
+GrayDuration	2
+GrayContrast	0.25
+RepeatRNGSeed	0

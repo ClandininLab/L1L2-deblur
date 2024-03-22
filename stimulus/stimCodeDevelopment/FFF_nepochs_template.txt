@@ -1,0 +1,5 @@
+PARAMS	2		
+EPOCHS	3
+STIMULUS_CLASS FullFieldFlash_BinaryContrast
+Duration	2	2	1
+Contrast	0	1	0.5

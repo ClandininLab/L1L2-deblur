@@ -1,0 +1,6 @@
+PARAMS 3
+EPOCHS	9
+STIMULUS_CLASS WhiteNoise_1D_FullFieldFlash
+EpochDuration	0.03	
+EpochContrast	0	0.125	0.25	0.375	0.5	0.625	0.75	0.875	1		
+RepeatRNGSeed	1

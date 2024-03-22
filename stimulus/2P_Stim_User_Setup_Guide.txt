@@ -1,0 +1,126 @@
+*************************************
+ User's Guide to 2p Stimulus Setup 
+ authors: Marjorie Xie, Helen Yang 
+ last updated March 24, 2017	    
+*************************************
+
+1. Turn on the Optiplex 9010 computer. Log into the ClandininLab account. 
+
+2. Connect to the SNI server: In the Start menu, right-click on ThisPC and click Map Network Drive. 
+	Type in \\sni-storage.stanford.edu\group\trc and check the box "connect using different credentials."
+	Sign in using your Stanford email and password.
+
+3. In your imaging directory, make a new date folder (must be in the form "YYMMDD"). In this folder, you will save 
+	all the stimulus and imaging data collected today that you want to analyze. Within the date folder, create a folder 
+	for your first fly (in the form "YYMMDD_flyN"). Later on, make a new folder for each new fly you image. 
+
+4. Set up the LightCrafter:
+	a. Plug cables (red tape) into the power, USB and HDMI ports.
+	b. The LightCrafter logo should be displayed when the power is plugged in (but disappear after you plug in USB).
+
+	c. Right-click on the desktop and select NVIDIA Control Panel. 
+		i. On the left menu, go to "Set up multiple displays". Right-click on the rectangle representing the LightCrafter
+		   (it should still be #2) and click "make primary monitor." The asterisk should mark this appropriately.
+		ii. Under "Rotate display", the LightCrafter orientation should be landscape.
+		iii. On the left menu, go to "Display" >> "Change resolution"
+		iv. Set the computer monitor screen resolution to 1920 x 1080 at refresh rate 100Hz. 
+		v. Set LightCrafter resolution to 1280 x 800 (native) and refresh rate 60Hz. 
+
+	NOTE: From here, windows you open on the computer may appear on the LightCrafter instead of on  
+	      the computer monitor. To move the window back to the computer monitor, hit Alt+Space+m on the keyboard
+	      and use the arrow keys. If Alt+Space+m doesn't select your window, hit Alt+Tab until that window is selected. 
+
+	d. Navigate to C:\Texas Instruments-DLP\DLPLCR4500GUI-3.0.1 and open the LightCrafter4500 application. 
+	e. DLP LightCrafter 4500 Control Software-3.0.1 should open. System Control panel should display green and "Connected." 
+
+		TIP: If Forced Swap is red, unplug the Lightcrafter and plug it back in again.
+	 	Close all the programs and restart them. Check that the settings in NVIDIA Control Panel are still correct.
+
+	f. Adjust for these settings:
+		1) Operating Mode: Pattern Sequence 
+		2) LED Driver Control: [R G B] = [0 0 200]
+		3) LED Selection: Manual, check Blue, hit Set
+		4) Sequence Settings Tab -> Sequence Settings Panel: Pattern Source = Video Port, Trigger Mode = Vsync
+		5) Individual Pattern Settings: under 'Choose Color' pick Blue, set Bit Bepth to 6
+		6) Select G0-G5, check 'Clear DMD after exposure', click 'Add Pattern to Sequence' (add the pattern 3 times)
+		7) Timing: Pattern exposure = Pattern period = 3000
+		   Pattern exposure = exposure time of one pattern, (Pattern exposre <= Pattern period).  
+	 	   Important: pattern period must be < (refresh rate)/#patterns, e.g. at a 100Hz refresh rate, pattern period < 10000us/3 = 3333
+		8) Click Send 
+		9) Under the tab 'Pattern Sequence Start/Stop/Pause', hit "Validate Sequence." Red circle should turn green.
+
+	g. Go back to NVIDIA Control Panel. Set LC resolution to 912 x 1140 at refresh rate 100Hz. You may need to make a custom setting.
+	h. Go back to the LightCrafter Control Software. Under 'Pattern Sequence Start/Stop/Pause', hit Play. 
+	   The LightCrafter should be emitting blue light.
+
+5. In the folder 2p-stim-code, open adjustResolution.txt. Set the font to 72-size letters. 
+	Move the text off the right edge of the screen to present it on the LightCrafter. 
+	Adjust the LightCrafter lens until the words come into focus. Then move the file back to the computer monitor.
+
+6. Screw the visual stimulus filters onto the lens of the LightCrafter. Try to do this without changing the focus of the lens.
+
+7. Plug the NIDAQ USB into this computer to sync it with the imaging computer and the photodiode. 
+
+8. Open Matlab and type in 'daq.getDevices' into the MATLAB command line. After a few seconds, it should list a device ID ('Dev1') and 
+	several types of input/output channels.
+
+9. Navigate to 'C:\Users\ClandininLab\Documents\2p-stim-code'. 
+   
+   Run screensizeTest.m from the MATLAB command line. Check the alignment of the projected image onto the stimulus screen. 
+   A full field blue square should be displayed on the screen. In addition, a much smaller square should fall on the photodiode.
+   Turn off the lights. The large square should cover the entire screen. Look directly into the photodiode; the small blue square 
+   should cover the photodiode lens completely.  ***NOTE: you must have an argument here - screensizeTest(1) or screensizeTest (2) -
+   whichever shows up on the lightcrafter. You must then use this argument when using playstimmain
+     
+  **TIPS: 
+	If the image looks crooked with respect to the screen, try loosening or tightening the silver screws by a half-turn on the black piece 
+        that holds the legs of the LightCrafter. If you loosen the black piece, it will be able to move up and down slightly, 
+        but it should be stable in the down position and will help straighten the image with respect to the screen.
+        Keep the LightCrafter legs tightly fitted into the black piece (don't loosen the small black knobs above and below).
+	   
+	If the image is a bit high with respect to the screen, gently push the LighCrafter lens upwards, which shifts the image downward.
+
+10. Check that the signal-to-noise ratio on the photodiode is high by running playStimMain. Play a full field flash stimulus (e.g. 300msFullFieldFlash)
+   	for a few seconds and then hit ESC. A figure should pop up - this plot shows the photodiode voltage readout over time. The light epochs should 
+	be clearly separated from the noise level in the dark epochs. The light epoch amplitude typically lies above 0.1V.
+
+11. playStimMain.m is the stimulus presentation program. Run the program (type 'playStimMain' in the command window) and 
+	follow the instructions it prints in the command window.
+
+
+** IMPORTANT Precautions **
+
+	*Syncing the imaging and stimulus computer*
+
+	Make sure to set up the triggers on the Leica software before you record any data you want to save. 
+	Make sure to stop any stimulus that is currently running before starting a recording. 
+	You can hit "Start Record" on the Leica software any time prior to starting a stimulus in playStimMain.m.
+	
+	*STOPPING AND SAVING DATA*
+
+	Stop the stimulus manually by pressing any key EXCEPT for 'Enter' after the imaging is completed. ESC is a good go-to option. 
+	If you forget, the stimulus will stop automatically after running for the duration you specify at the start of the program + 1 minute buffer time.
+	Either way, you will be given the option of saving the data. 
+
+	*ENTERING METADATA*
+
+	When the program says, 'Enter the name of this time series in the .lif file:', make sure to enter the name of the time series 
+	as displayed under the 'Experiments' tab in the Leica software, which will be 'LDM_<some number>'. 
+	The time series name you enter must match the name in the Leica Software because this how the analysis code knows which 
+	stimulus data to match this imaging data set to. 
+
+	Next, the program will save stim.mat in a new folder with the same name as that of the time series. 
+	The program will prompt you to select the fly folder in which to save this time series folder in. 
+
+	If you enter a time series name that already exists in the fly folder or do not provide a name, a generic name will be assigned
+	in the form of a date-time string: 'yymmdd_HH_MM_SS'. You must go back into stim.mat and edit the name:
+		1. Go into the default folder that the program created
+		2. Load stim.mat 
+		3. Change the value of the field 'imDataName' to the actual name of the time series (e.g. LDM_001)
+		4. Make sure the field 'fileloc' is set to the correct file path 
+		5. Resave the struct by typing the following into the command window: save stim obj
+	
+
+
+
+

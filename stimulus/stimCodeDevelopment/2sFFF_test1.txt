@@ -1,0 +1,5 @@
+PARAMS	3		
+EPOCHS	7
+funcName teststim_FFF
+duration	2	2	0	0	0	0	0
+contrast	0	1	0	0	0	0	0 

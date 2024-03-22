@@ -1,0 +1,7 @@
+PARAMS	3		
+EPOCHS	1
+STIMULUS_CLASS	NaturalisticStimulus_1D_FullField
+Filename	natStim2Epochs_Schleienlocher_swampyForest_10s.mat
+Duration	10
+WhichStim	1
+RepeatRNGSeed	0

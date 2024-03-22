@@ -1,0 +1,5 @@
+PARAMS	2		
+EPOCHS	2
+STIMULUS_CLASS NaturalisticStimulus_1D_FullField
+Duration	.3	.3	
+Contrast	0	1	

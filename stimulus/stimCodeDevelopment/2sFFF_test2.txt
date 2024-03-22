@@ -1,0 +1,5 @@
+PARAMS	2		
+EPOCHS	7
+STIMULUS_CLASS FullFieldFlash
+Duration	2	2	0	0	0	0	0
+Contrast	0	1	0	0	0	0	0 
